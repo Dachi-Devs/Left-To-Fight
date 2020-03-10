@@ -1,11 +1,8 @@
 ﻿using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 using CodeMonkey.Utils;
 
-public class Grid
+public class Grid<TGridObject>
 {
     public const int HEAT_MAP_MAX_VALUE = 100;
     public const int HEAT_MAP_MIN_VALUE = 0;
@@ -17,22 +14,29 @@ public class Grid
         public int y;
     }
 
-
     private int width;
     private int height;
     private float cellSize;
     private Vector3 originPos;
-    private int[,] gridArray;
+    private TGridObject[,] gridArray;
 
 
-    public Grid(int width, int height, float cellSize, Vector3 originPos)
+    public Grid(int width, int height, float cellSize, Vector3 originPos, Func<Grid<TGridObject>, int, int, TGridObject> createGridObject)
     {
         this.width = width;
         this.height = height;
         this.cellSize = cellSize;
         this.originPos = originPos;
 
-        gridArray = new int[width, height];
+        gridArray = new TGridObject[width, height];
+
+        for (int x = 0; x < gridArray.GetLength(0); x++)
+        {
+            for (int y = 0; y < gridArray.GetLength(1); y++)
+            {
+                gridArray[x, y] = createGridObject(this, x, y);
+            }
+        }
 
         bool showDebug = true;
         if (showDebug)
@@ -43,7 +47,7 @@ public class Grid
             {
                 for (int y = 0; y < gridArray.GetLength(1); y++)
                 {
-                    debugTextArray[x, y] = UtilsClass.CreateWorldText(gridArray[x, y].ToString(), null, GetWorldPos(x, y) + new Vector3(cellSize, cellSize) * 0.5f, 20, Color.white, TextAnchor.MiddleCenter);
+                    debugTextArray[x, y] = UtilsClass.CreateWorldText(gridArray[x, y]?.ToString(), null, GetWorldPos(x, y) + new Vector3(cellSize, cellSize) * 0.5f, 20, Color.white, TextAnchor.MiddleCenter);
                     Debug.DrawLine(GetWorldPos(x, y), GetWorldPos(x, y + 1), Color.white, 100f);
                     Debug.DrawLine(GetWorldPos(x, y), GetWorldPos(x + 1, y), Color.white, 100f);
                 }
@@ -54,7 +58,7 @@ public class Grid
 
             OnGridValueChanged += (object sender, OnGridValueChangedEventArgs eventArgs) =>
             {
-                debugTextArray[eventArgs.x, eventArgs.y].text = gridArray[eventArgs.x, eventArgs.y].ToString();
+                debugTextArray[eventArgs.x, eventArgs.y].text = gridArray[eventArgs.x, eventArgs.y]?.ToString();
             };
         }
     }
@@ -64,63 +68,34 @@ public class Grid
         return new Vector3(x, y) * cellSize + originPos;
     }
 
-    private void GetXY(Vector3 worldPos, out int x, out int y)
+    public void GetXY(Vector3 worldPos, out int x, out int y)
     {
         x = Mathf.FloorToInt((worldPos - originPos).x / cellSize);
         y = Mathf.FloorToInt((worldPos - originPos).y / cellSize);
     }
 
-    public void SetValue (int x, int y, int value)
+    public void SetGridObject(int x, int y, TGridObject value)
     {
         if (0 <= x && x < width && 0 <= y && y < height)
         {
-            gridArray[x, y] = Mathf.Clamp(value, HEAT_MAP_MIN_VALUE, HEAT_MAP_MAX_VALUE);
+            gridArray[x, y] = value;
             if (OnGridValueChanged != null) OnGridValueChanged(this, new OnGridValueChangedEventArgs { x = x, y = y });
         }
     }
 
-    public void SetValue(Vector3 worldPos, int value)
+    public void TriggerGridObjectChanged(int x, int y)
+    {
+        if (OnGridValueChanged != null) OnGridValueChanged(this, new OnGridValueChangedEventArgs { x = x, y = y });
+    }
+
+    public void SetGridObject(Vector3 worldPos, TGridObject value)
     {
         int x, y;
         GetXY(worldPos, out x, out y);
-        SetValue(x, y, value);
+        SetGridObject(x, y, value);
     }
 
-    public void AddValue(int x, int y, int value)
-    { 
-        SetValue(x, y, GetValue(x, y) + value);
-    }
-
-    public void AddValue(Vector3 worldPos, int value, int fullValueRange, int totalRange)
-    {
-        int lowerValueAmount = Mathf.RoundToInt((float)value / (totalRange - fullValueRange));
-        GetXY(worldPos, out int originX, out int originY);
-        for (int x = 0; x < totalRange; x++)
-        {
-            for (int y = 0; y < totalRange - x; y++)
-            {
-                int radius = x + y;
-                int addValueAmount = value;
-                if (radius > fullValueRange)
-                {
-                    addValueAmount -= lowerValueAmount * (radius - fullValueRange);
-                }
-
-                AddValue(originX + x, originY + y, addValueAmount);
-
-                if (x != 0)
-                {
-                    AddValue(originX - x, originY + y, addValueAmount);
-                    if (y != 0)
-                        AddValue(originX - x, originY - y, addValueAmount);
-                }
-                if (y != 0)
-                    AddValue(originX + x, originY - y, addValueAmount);
-            }
-        }
-    }
-
-    public int GetValue(int x, int y)
+    public TGridObject GetGridObject(int x, int y)
     {
         if (0 <= x && x < width && 0 <= y && y < height)
         {
@@ -128,15 +103,15 @@ public class Grid
         }
         else
         {
-            return 0;
+            return default(TGridObject);
         }
     }
 
-    public int GetValue(Vector3 worldPos)
+    public TGridObject GetGridObject(Vector3 worldPos)
     {
         int x, y;
         GetXY(worldPos, out x, out y);
-        return GetValue(x, y);
+        return GetGridObject(x, y);
     }
 
     public int GetWidth()
