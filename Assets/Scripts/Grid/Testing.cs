@@ -12,7 +12,7 @@ public class Testing : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        grid = new Grid(16, 9, 6f, new Vector3(-48f, -27f));
+        grid = new Grid(80, 45, 5f, new Vector3(-250f, -250f));
 
         heatMapVisual.SetGrid(grid);
     }
@@ -21,12 +21,8 @@ public class Testing : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            grid.SetValue(UtilsClass.GetMouseWorldPosition(), grid.GetValue(UtilsClass.GetMouseWorldPosition()) + 10);
-        }
-
-        if (Input.GetMouseButtonDown(1))
-        {
-            Debug.Log(grid.GetValue(UtilsClass.GetMouseWorldPosition()));
+            Vector3 position = UtilsClass.GetMouseWorldPosition();
+            grid.AddValue(position, 100, 5, 10);
         }
     }
 }

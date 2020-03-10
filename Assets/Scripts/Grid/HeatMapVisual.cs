@@ -1,12 +1,13 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using CodeMonkey.Utils;
 
 public class HeatMapVisual : MonoBehaviour
 {
     private Grid grid;
     private Mesh mesh;
+    private bool updateMesh;
 
     void Awake()
     {
@@ -17,6 +18,23 @@ public class HeatMapVisual : MonoBehaviour
     public void SetGrid(Grid grid)
     {
         this.grid = grid;
+        UpdateHeatMapVisual();
+
+        grid.OnGridValueChanged += Grid_OnGridValueChanged;
+    }
+
+    private void Grid_OnGridValueChanged(object sender, Grid.OnGridValueChangedEventArgs e)
+    {
+        updateMesh = true;
+    }
+
+    private void LateUpdate()
+    {
+        if (updateMesh)
+        {
+            updateMesh = false;
+            UpdateHeatMapVisual();
+        }
     }
 
     private void UpdateHeatMapVisual()
@@ -28,7 +46,18 @@ public class HeatMapVisual : MonoBehaviour
             for (int y = 0; y < grid.GetHeight(); y++)
             {
                 int index = x * grid.GetHeight() + y;
+                Vector3 quadSize = new Vector3(1, 1) * grid.GetCellSize();
+
+                int gridValue = grid.GetValue(x, y);
+                float gridValueNormalized = (float)gridValue / Grid.HEAT_MAP_MAX_VALUE;
+                Vector2 gridValueUV = new Vector2(gridValueNormalized, 0f);
+
+                MeshUtils.AddToMeshArrays(vertices, uv, triangles, index, grid.GetWorldPos(x, y) + quadSize * 0.5f, 0f, quadSize, gridValueUV, gridValueUV);
             }
         }
+
+        mesh.vertices = vertices;
+        mesh.uv = uv;
+        mesh.triangles = triangles;
     }
 }
