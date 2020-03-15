@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GameHandler : MonoBehaviour
+public class RandomSprites : MonoBehaviour
 {
     [SerializeField]
     private Texture2D baseTexture;

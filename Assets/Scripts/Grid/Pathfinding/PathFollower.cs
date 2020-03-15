@@ -23,10 +23,9 @@ public class PathFollower : MonoBehaviour
         if (pathVectorList != null)
         {
             Vector3 targetPosition = pathVectorList[currentPathIndex];
-            if (Vector3.Distance(transform.position, targetPosition) > 1f)
+            if (Vector3.Distance(transform.position, targetPosition) > 0.1f)
             {
                 Vector3 moveDir = (targetPosition - transform.position).normalized;
-
                 float distanceBefore = Vector3.Distance(transform.position, targetPosition);
                 transform.position = transform.position + moveDir * speed * Time.deltaTime;
             }
