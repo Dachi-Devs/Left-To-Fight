@@ -1,18 +1,28 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using CodeMonkey.Utils;
 
-public class PathFollower : MonoBehaviour
+public class MovePositionPathfinding : MonoBehaviour, IMovePos
 {
-    public const float speed = 40f;
-
-    private int currentPathIndex;
     private List<Vector3> pathVectorList;
+    private int pathIndex = -1;
 
-    // Start is called before the first frame update
+    public void SetMovePosition(Vector3 targetPos)
+    {
+        pathIndex = 0;
+        pathVectorList = Pathfinding.instance.FindPath(GetPosition(), targetPos);
 
-    // Update is called once per frame
+        foreach (Vector3 v in pathVectorList)
+        {
+            Debug.Log(v);
+        }
+
+        if (pathVectorList != null && pathVectorList.Count > 1)
+        {
+            pathVectorList.RemoveAt(0);
+        }
+    }
+
     void Update()
     {
         HandleMovement();
@@ -22,17 +32,17 @@ public class PathFollower : MonoBehaviour
     {
         if (pathVectorList != null)
         {
-            Vector3 targetPosition = pathVectorList[currentPathIndex];
+            Vector3 targetPosition = pathVectorList[pathIndex];
             if (Vector3.Distance(transform.position, targetPosition) > 0.1f)
             {
                 Vector3 moveDir = (targetPosition - transform.position).normalized;
                 float distanceBefore = Vector3.Distance(transform.position, targetPosition);
-                transform.position = transform.position + moveDir * speed * Time.deltaTime;
+                GetComponent<IMoveVelocity>().SetVelocity(moveDir);
             }
             else
             {
-                currentPathIndex++;
-                if (currentPathIndex >= pathVectorList.Count)
+                pathIndex++;
+                if (pathIndex >= pathVectorList.Count)
                 {
                     StopMoving();
                 }
@@ -49,15 +59,4 @@ public class PathFollower : MonoBehaviour
     {
         return transform.position;
     }
-
-    public void SetTargetPosition(Vector3 targetPosition)
-    {
-        currentPathIndex = 0;
-        pathVectorList = Pathfinding.instance.FindPath(GetPosition(), targetPosition);
-
-        if (pathVectorList != null && pathVectorList.Count > 1)
-        {
-            pathVectorList.RemoveAt(0);
-        }
-    }  
 }

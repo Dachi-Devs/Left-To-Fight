@@ -6,16 +6,16 @@ public class Pathfinding
     private const int MOVE_STRAIGHT_COST = 10;
     private const int MOVE_DIAGONAL_COST = 14;
     
-    public static Pathfinding Instance { get; private set; }
+    public static Pathfinding instance { get; private set; }
 
     private Grid<PathNode> grid;
     private List<PathNode> openList;
     private List<PathNode> closedList;
 
-    public Pathfinding(int width, int height)
+    public Pathfinding(int width, int height, Vector2 origin)
     {
-        Instance = this;
-        grid = new Grid<PathNode>(width, height, 10f, Vector2.zero, (Grid<PathNode> g, int x, int y) => new PathNode(g, x, y));
+        instance = this;
+        grid = new Grid<PathNode>(width, height, 10f, origin, (Grid<PathNode> g, int x, int y) => new PathNode(g, x, y));
     }
 
     public Grid<PathNode> GetGrid()
@@ -38,11 +38,12 @@ public class Pathfinding
             List<Vector3> vectorPath = new List<Vector3>();
             foreach (PathNode pathNode in path)
             {
-                vectorPath.Add(new Vector3(pathNode.x, pathNode.y) * grid.GetCellSize() + Vector3.one * grid.GetCellSize() * 0.5f);
+                Vector3 v = new Vector3(pathNode.x, pathNode.y) * grid.GetCellSize() + Vector3.one * grid.GetCellSize() * 0.5f;
+                v.z = 0;
+                vectorPath.Add(v);
             }
             return vectorPath;
         }
-
     }
 
     public List<PathNode> FindPath(int startX, int startY, int endX, int endY)

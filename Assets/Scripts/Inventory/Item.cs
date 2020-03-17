@@ -2,28 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Item
+[CreateAssetMenu(fileName = "New Item", menuName = "Items/New Item")]
+public class Item : ScriptableObject
 {
-    public enum ItemType
-    {
-        Wood,
-        Metal,
-        Gun,
-        Medkit,
-    }
-
-    public ItemType itemType;    
-    public int quantity;
-
-    public Sprite GetSprite()
-    {
-        switch (itemType)
-        {
-            default:
-            case ItemType.Wood:     return ItemAssets.Instance.woodSprite;
-            case ItemType.Metal:    return ItemAssets.Instance.metalSprite;
-            case ItemType.Gun:      return ItemAssets.Instance.gunSprite;
-            case ItemType.Medkit:   return ItemAssets.Instance.medkitSprite;
-        }
-    }
+    public string itemName;
+    public bool isStackable;
+    public Sprite sprite;
 }
