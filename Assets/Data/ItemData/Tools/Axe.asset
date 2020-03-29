@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f89d8e9d8796e149b1b982073fde2ee, type: 3}
-  m_Name: Steel
+  m_Name: Axe
   m_EditorClassIdentifier: 
-  itemName: Steel
-  isStackable: 1
-  sprite: {fileID: 1853874344321017778, guid: afb664ee9353d7f4a9835db5427d20f0, type: 3}
+  itemName: Axe
+  isStackable: 0
+  sprite: {fileID: 4639506938558671751, guid: 4794ac14777932a49a9a9c028697eb0c, type: 3}

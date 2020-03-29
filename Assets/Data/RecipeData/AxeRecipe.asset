@@ -10,15 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0e0c5bf8613c60e43812b561f9fcba22, type: 3}
-  m_Name: TestRecipe
+  m_Name: AxeRecipe
   m_EditorClassIdentifier: 
   materials:
-  - item: {fileID: 11400000, guid: f37473debcdfbd04d9c409629e16d899, type: 2}
-    quantity: 275
-  - item: {fileID: 11400000, guid: 028dbd98dfa474148b7fd6356e423fad, type: 2}
-    quantity: 263
-  - item: {fileID: 11400000, guid: 3ee868840f88c734aabc7ba7725bbb6e, type: 2}
-    quantity: 263
+  - item: {fileID: 11400000, guid: a652e0571674437439439660e53467fa, type: 2}
+    quantity: 1
+  - item: {fileID: 11400000, guid: 0d033723c38533d469e0f328861a0d25, type: 2}
+    quantity: 1
   output:
-    item: {fileID: 11400000, guid: 3ee868840f88c734aabc7ba7725bbb6e, type: 2}
+    item: {fileID: 11400000, guid: 21a27f4db3f6103488d446bd2281c351, type: 2}
     quantity: 1

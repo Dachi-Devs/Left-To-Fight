@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5f89d8e9d8796e149b1b982073fde2ee, type: 3}
-  m_Name: Bush
+  m_Name: Screws
   m_EditorClassIdentifier: 
-  itemName: Bush
+  itemName: Screws
   isStackable: 1
-  sprite: {fileID: 21300000, guid: e694399651f728c4a8b3ca4e93619437, type: 3}
+  sprite: {fileID: -2064859774160998932, guid: 4794ac14777932a49a9a9c028697eb0c, type: 3}
