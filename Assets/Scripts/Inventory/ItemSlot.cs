@@ -5,7 +5,7 @@ using UnityEngine;
 public class ItemSlot
 {
     public Item item;
-    [Range(1, 999)]
+    [Range(1, 99)]
     public int quantity;
 
     public ItemSlot(Item item, int quantity)

@@ -28,7 +28,7 @@ public class Recipe : ScriptableObject
             {
                 foreach (ItemSlot item in materials)
                 {
-                    itemContainer.AddToQuantity(item, -item.quantity);
+                    itemContainer.RemoveQuantity(item, item.quantity);
                 }
                 itemContainer.AddItem(output);
             }

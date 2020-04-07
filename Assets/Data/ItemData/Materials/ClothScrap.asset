@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Cloth
   isStackable: 1
-  sprite: {fileID: -7573354855677281409, guid: 4794ac14777932a49a9a9c028697eb0c, type: 3}
+  sprite: {fileID: 5589875621261886454, guid: 4794ac14777932a49a9a9c028697eb0c, type: 3}

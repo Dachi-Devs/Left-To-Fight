@@ -5,15 +5,12 @@ using UnityEngine;
 public class BaseInventory : MonoBehaviour
 {
     public Inventory inventory;
-    private InventoryUI invUI;
-    private CraftingUI craftUI;
 
-    void Awake()
+    void Start()
     {
         inventory = new Inventory();
-        invUI = FindObjectOfType<InventoryUI>();
-        invUI.SetInventory(inventory);
-        craftUI = FindObjectOfType<CraftingUI>();
-        craftUI.SetInventory(inventory);
+        //FindObjectOfType<InventoryUI>().SetInventory(inventory);
+        //FindObjectOfType<CraftingUI>().SetInventory(inventory);
+        FindObjectOfType<ListInventoryUI>().SetInventory(inventory);
     }
 }
