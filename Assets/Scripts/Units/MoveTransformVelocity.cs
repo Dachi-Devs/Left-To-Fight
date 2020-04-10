@@ -15,6 +15,7 @@ public class MoveTransformVelocity : MonoBehaviour, IMoveVelocity
         {
             rb2d = gameObject.AddComponent<Rigidbody2D>();
         }
+        rb2d.gravityScale = 0;
         //GetAnimControllerWhenMade
     }
 
