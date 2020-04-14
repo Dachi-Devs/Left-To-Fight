@@ -2,18 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Health : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-    private float currentHealth;
-
     // Start is called before the first frame update
     void Start()
     {
         
     }
 
-    public void Damage(float damageToTake)
+    // Update is called once per frame
+    void Update()
     {
-        currentHealth -= damageToTake;
+        
     }
 }
