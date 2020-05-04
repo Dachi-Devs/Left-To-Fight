@@ -13,5 +13,7 @@ MonoBehaviour:
   m_Name: 9mm Pistol
   m_EditorClassIdentifier: 
   bulletSO: {fileID: 11400000, guid: 7de8e5ca5e543fa4ca469c1b730195df, type: 2}
-  fireOffset: {x: 0, y: 2.1, z: 0}
-  gunSprite: {fileID: 21300000, guid: c33871c8638eb4c41bfb4577f3b58627, type: 3}
+  fireRate: 0
+  fireOffset: 3
+  gunSprite: {fileID: 5198254760842121501, guid: b713502713d3c51449a8fc413892edb3,
+    type: 3}

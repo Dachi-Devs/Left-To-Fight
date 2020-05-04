@@ -5,7 +5,9 @@ public class GunSO : ScriptableObject
 {
     public BulletSO bulletSO;
 
-    public Vector3 fireOffset;
+    public float fireRate;
+
+    public float fireOffset;
 
     public Sprite gunSprite;
 }

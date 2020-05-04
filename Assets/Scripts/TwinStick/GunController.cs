@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class GunController : MonoBehaviour
+public class GunController : MonoBehaviour, IAttack
 {
     [SerializeField]
     private GameObject bulletPrefab;
@@ -10,11 +10,17 @@ public class GunController : MonoBehaviour
 
     private GunSO gunSO;
 
-    public GunSO defaultGunSO;
+    [SerializeField]
+    private GunSO defaultGunSO;
+
+    private float cooldown;
+
+    private bool triggerPulled;
 
     void Start()
     {
         Setup(defaultGunSO);
+        cooldown = gunSO.fireRate;
     }
 
     private void Setup(GunSO gunSO)
@@ -22,7 +28,27 @@ public class GunController : MonoBehaviour
         this.gunSO = gunSO;
         GetComponentInChildren<SpriteRenderer>().sprite = gunSO.gunSprite;
 
-        firePosition.localPosition = gunSO.fireOffset;
+        firePosition.localPosition = new Vector3(0, gunSO.fireOffset, 0);
+    }
+
+    public void StartAttack() => triggerPulled = true;
+    public void EndAttack() => triggerPulled = false;
+
+    void Update()
+    {
+        if (cooldown > 0)
+        {
+            cooldown -= Time.deltaTime;
+        }
+
+        if (triggerPulled)
+        {
+            if (cooldown <= 0)
+            {
+                FireBullet();
+                cooldown = gunSO.fireRate;
+            }
+        }
     }
 
     public void FireBullet()

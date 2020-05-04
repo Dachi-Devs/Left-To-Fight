@@ -10,9 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7d50490cdf9b5894cbaba0852438981d, type: 3}
-  m_Name: BigGun
+  m_Name: SMG
   m_EditorClassIdentifier: 
-  bulletSO: {fileID: 11400000, guid: 6e7ea7146c54e214ebdd6250e994c32d, type: 2}
-  fireOffset: {x: 0, y: 4, z: 0}
-  gunSprite: {fileID: 2029542551908640097, guid: 4794ac14777932a49a9a9c028697eb0c,
+  bulletSO: {fileID: 11400000, guid: 7de8e5ca5e543fa4ca469c1b730195df, type: 2}
+  fireRate: 0
+  fireOffset: 4.2
+  gunSprite: {fileID: 4260106969037800426, guid: ac2c55f97410bf648af57c44116d50b4,
     type: 3}
