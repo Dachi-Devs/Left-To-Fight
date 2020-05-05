@@ -29,7 +29,8 @@ public class Bullet : MonoBehaviour
         Health health = coll.transform.GetComponent<Health>();
         if (health != null)
         {
-            health.Damage(bulletSO.damage);
+
+            health.Damage(bulletSO.damage, bulletSO.armourPen);
         }
 
         if (!bulletSO.penetration)

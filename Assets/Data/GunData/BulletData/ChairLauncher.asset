@@ -9,12 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7d50490cdf9b5894cbaba0852438981d, type: 3}
-  m_Name: SMG
+  m_Script: {fileID: 11500000, guid: 805eefd99fd268e48895a285ea43b162, type: 3}
+  m_Name: ChairLauncher
   m_EditorClassIdentifier: 
-  bulletSO: {fileID: 11400000, guid: 7de8e5ca5e543fa4ca469c1b730195df, type: 2}
-  fireRate: 0.2
-  fireOffset: 4.2
-  inaccuracy: 5
-  gunSprite: {fileID: 4260106969037800426, guid: ac2c55f97410bf648af57c44116d50b4,
+  bulletName: Chair
+  bulletSprite: {fileID: -893012132824976593, guid: 4794ac14777932a49a9a9c028697eb0c,
     type: 3}
+  damage: 4
+  armourPen: 10
+  speedMod: 2
+  penetration: 1

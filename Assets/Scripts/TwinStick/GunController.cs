@@ -13,14 +13,13 @@ public class GunController : MonoBehaviour, IAttack
     [SerializeField]
     private GunSO defaultGunSO;
 
-    private float cooldown;
+    private float cooldown = 0;
 
     private bool triggerPulled;
 
     void Start()
     {
         Setup(defaultGunSO);
-        cooldown = gunSO.fireRate;
     }
 
     private void Setup(GunSO gunSO)
@@ -53,7 +52,10 @@ public class GunController : MonoBehaviour, IAttack
 
     public void FireBullet()
     {
-        Bullet bullet = Instantiate(bulletPrefab, firePosition.position, firePosition.rotation).GetComponent<Bullet>();
+        Quaternion randomRot = firePosition.rotation;
+        float accuracyMod = Random.Range(-gunSO.inaccuracy, gunSO.inaccuracy);
+        randomRot.eulerAngles = new Vector3(randomRot.eulerAngles.x, randomRot.eulerAngles.y, randomRot.eulerAngles.z + accuracyMod);
+        Bullet bullet = Instantiate(bulletPrefab, firePosition.position, randomRot).GetComponent<Bullet>();
         bullet.Setup(gunSO.bulletSO);
     }
 }

@@ -5511,7 +5511,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 2042344667308019824, guid: d1c83e15187f4534590dfb192dbdf21e,
     type: 3}
   firePosition: {fileID: 946798981}
-  defaultGunSO: {fileID: 11400000, guid: ef7947d490d3ab04782681946a8bd262, type: 2}
+  defaultGunSO: {fileID: 11400000, guid: 4e1f0aee39b692e4fb3551ea5500f376, type: 2}
 --- !u!1 &1741107750
 GameObject:
   m_ObjectHideFlags: 0
@@ -5601,7 +5601,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 203ed25402b9e754892487afb4ff0e9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHealth: 0
   currentHealth: 0
+  armour: {fileID: 0}
 --- !u!114 &1741107756
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5623,7 +5625,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1741107750}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba9ed1845c38c8d4f8d8620f7233c3f2, type: 3}
+  m_Script: {fileID: 11500000, guid: 4da73fb2c7a0aec4490e9c0fe90c2e58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!50 &1741107758
@@ -5678,7 +5680,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 203ed25402b9e754892487afb4ff0e9e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentHealth: 5
+  maxHealth: 5
+  currentHealth: 0
+  armour: {fileID: 11400000, guid: a36dc5a549232fd439030f0fbf6258c6, type: 2}
 --- !u!58 &2053223223
 CircleCollider2D:
   m_ObjectHideFlags: 0

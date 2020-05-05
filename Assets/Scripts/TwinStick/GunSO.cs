@@ -9,5 +9,7 @@ public class GunSO : ScriptableObject
 
     public float fireOffset;
 
+    public float inaccuracy;
+
     public Sprite gunSprite;
 }

@@ -10,10 +10,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 805eefd99fd268e48895a285ea43b162, type: 3}
-  m_Name: ChairLauncher
+  m_Name: 45ACP
   m_EditorClassIdentifier: 
-  damage: 4
-  speedMod: 2
-  penetration: 1
-  bulletSprite: {fileID: -893012132824976593, guid: 4794ac14777932a49a9a9c028697eb0c,
-    type: 3}
+  bulletName: .45 ACP
+  bulletSprite: {fileID: 21300000, guid: 6805dea7e3d4cf74c9e49411a5daef38, type: 3}
+  damage: 1
+  armourPen: 1
+  speedMod: 1
+  penetration: 0
