@@ -5511,7 +5511,7 @@ MonoBehaviour:
   bulletPrefab: {fileID: 2042344667308019824, guid: d1c83e15187f4534590dfb192dbdf21e,
     type: 3}
   firePosition: {fileID: 946798981}
-  defaultGunSO: {fileID: 11400000, guid: 4e1f0aee39b692e4fb3551ea5500f376, type: 2}
+  defaultGunSO: {fileID: 11400000, guid: ef7947d490d3ab04782681946a8bd262, type: 2}
 --- !u!1 &1741107750
 GameObject:
   m_ObjectHideFlags: 0
