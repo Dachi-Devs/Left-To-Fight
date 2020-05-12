@@ -17,6 +17,7 @@ public class PathSetup : MonoBehaviour
     void Start()
     {
         pathfinding = new Pathfinding(gridX, gridY, transform.position);
-        //pathfinderVisual.SetGrid(pathfinding.GetGrid());
+        if (pathfinderVisual != null)
+            pathfinderVisual.SetGrid(pathfinding.GetGrid());
     }
 }

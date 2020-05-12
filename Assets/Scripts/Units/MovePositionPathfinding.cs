@@ -4,8 +4,18 @@ using UnityEngine;
 
 public class MovePositionPathfinding : MonoBehaviour, IMovePos
 {
+    [SerializeField]
     private List<Vector3> pathVectorList;
-    private int pathIndex = -1;
+    [SerializeField]
+    private int pathIndex = 0;
+    private IMoveVelocity movement;
+    [SerializeField]
+    private float reachedTargetDistance;
+
+    void Awake()
+    {
+        movement = GetComponent<IMoveVelocity>();
+    }
 
     public void SetMovePosition(Vector3 targetPos)
     {
@@ -33,11 +43,10 @@ public class MovePositionPathfinding : MonoBehaviour, IMovePos
         if (pathVectorList != null)
         {
             Vector3 targetPosition = pathVectorList[pathIndex];
-            if (Vector3.Distance(transform.position, targetPosition) > 0.1f)
+            if (Vector3.Distance(transform.position, targetPosition) > reachedTargetDistance)
             {
                 Vector3 moveDir = (targetPosition - transform.position).normalized;
-                float distanceBefore = Vector3.Distance(transform.position, targetPosition);
-                GetComponent<IMoveVelocity>().SetVelocity(moveDir);
+                movement.SetVelocity(moveDir);
             }
             else
             {
@@ -53,6 +62,7 @@ public class MovePositionPathfinding : MonoBehaviour, IMovePos
     private void StopMoving()
     {
         pathVectorList = null;
+        movement.SetVelocity(Vector3.zero);
     }
 
     public Vector3 GetPosition()
