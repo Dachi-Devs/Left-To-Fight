@@ -13,7 +13,7 @@ public class PathTest : MonoBehaviour
 
     void Start()
     {
-        pathfinding = new Pathfinding(10, 10, transform.position);
+        pathfinding = new Pathfinding(10, 10, 10, transform.position);
         pathfinderVisual.SetGrid(pathfinding.GetGrid());
     }
 

@@ -1,6 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PathSetup : MonoBehaviour
 {
@@ -12,11 +10,13 @@ public class PathSetup : MonoBehaviour
     private int gridX;
     [SerializeField]
     private int gridY;
+    [SerializeField]
+    private float cellSize;
 
 
     void Start()
     {
-        pathfinding = new Pathfinding(gridX, gridY, transform.position);
+        pathfinding = new Pathfinding(gridX, gridY, cellSize, transform.position);
         if (pathfinderVisual != null)
             pathfinderVisual.SetGrid(pathfinding.GetGrid());
     }

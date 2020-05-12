@@ -4905,8 +4905,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathfinderVisual: {fileID: 0}
-  gridX: 10
-  gridY: 6
+  gridX: 20
+  gridY: 12
+  cellSize: 5
 --- !u!4 &273921950
 Transform:
   m_ObjectHideFlags: 0
@@ -5831,7 +5832,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 775f5d1b80d070146a24b74c82a26611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 20
+  moveSpeed: 10
 --- !u!114 &2053223227
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5860,4 +5861,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   roamPos: {x: 0, y: 0, z: 0}
-  idleMax: 0
+  idleMax: 3
+  idleTimer: 0
+  state: 0

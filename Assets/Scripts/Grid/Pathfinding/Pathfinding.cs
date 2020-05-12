@@ -12,10 +12,10 @@ public class Pathfinding
     private List<PathNode> openList;
     private List<PathNode> closedList;
 
-    public Pathfinding(int width, int height, Vector2 origin)
+    public Pathfinding(int width, int height, float cellSize, Vector2 origin)
     {
         instance = this;
-        grid = new Grid<PathNode>(width, height, 10f, origin, (Grid<PathNode> g, int x, int y) => new PathNode(g, x, y));
+        grid = new Grid<PathNode>(width, height, cellSize, origin, (Grid<PathNode> g, int x, int y) => new PathNode(g, x, y));
     }
 
     public Grid<PathNode> GetGrid()

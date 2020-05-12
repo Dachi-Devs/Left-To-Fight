@@ -1,8 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class ZombieFSM : MonoBehaviour
+public class ZombieFSM : MonoBehaviour, IController
 {
     private IMovePos movement;
 
@@ -12,14 +10,17 @@ public class ZombieFSM : MonoBehaviour
 
     [SerializeField]
     private float idleMax;
+    [SerializeField]
     private float idleTimer;
+    private bool idle;
 
     private enum State
     {
-        idle,
         roaming,
+        attacking,
     }
 
+    [SerializeField]
     private State state;
 
     void Awake()
@@ -29,7 +30,7 @@ public class ZombieFSM : MonoBehaviour
 
     void Start()
     {
-        state = State.idle;
+        state = State.roaming;
         idleTimer = idleMax;
         startPos = transform.position;
         roamPos = GetRoamingArea();
@@ -38,28 +39,61 @@ public class ZombieFSM : MonoBehaviour
 
     void Update()
     {
-
-        float targetDistance = 1f;
-        if (Vector3.Distance(transform.position, roamPos) < targetDistance)
+        switch (state)
         {
-            Debug.Log("At Target");
-            roamPos = GetRoamingArea();
-            movement.SetMovePosition(roamPos);
-        }
+            case State.roaming:
+                {        
+                    if (idle == true)
+                    {
+                        if (idleTimer > 0)
+                            idleTimer -= Time.deltaTime;
+                        else
+                        {
+                            idle = false;
+                            NewTarget();
+                        }
+                    }
+                    break;    
+                }
+            case State.attacking:
+                {
 
-        if (idleTimer > 0)
-            idleTimer -= Time.deltaTime;
+                    break;
+                }
+        }
+    }
+    private void NewTarget()
+    {
+        roamPos = GetRoamingArea();
+        movement.SetMovePosition(roamPos);
     }
 
     private Vector3 GetRoamingArea()
     {
         Vector3 roamTarget;
         roamTarget = startPos + RandomDirection() * Random.Range(10f, 30f);
+        if (roamTarget.x < 0)
+            roamTarget.x = 0;
+        if (roamTarget.y < 0)
+            roamTarget.y = 0;
         return roamTarget;
     }
     private Vector3 RandomDirection()
     {
-        return new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+        Vector3 target;
+        target = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f)).normalized;
+        return target;
     }
 
+    private void StartIdle()
+    {
+        idleTimer = idleMax;
+        idle = true;
+    }
+
+    //Call received by Pathfinding
+    public void TargetReached()
+    {
+        StartIdle();
+    }
 }

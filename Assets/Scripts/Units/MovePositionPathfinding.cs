@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class MovePositionPathfinding : MonoBehaviour, IMovePos
@@ -21,11 +20,6 @@ public class MovePositionPathfinding : MonoBehaviour, IMovePos
     {
         pathIndex = 0;
         pathVectorList = Pathfinding.instance.FindPath(GetPosition(), targetPos);
-
-        foreach (Vector3 v in pathVectorList)
-        {
-            Debug.Log(v);
-        }
 
         if (pathVectorList != null && pathVectorList.Count > 1)
         {
@@ -63,6 +57,7 @@ public class MovePositionPathfinding : MonoBehaviour, IMovePos
     {
         pathVectorList = null;
         movement.SetVelocity(Vector3.zero);
+        GetComponent<IController>().TargetReached();
     }
 
     public Vector3 GetPosition()
