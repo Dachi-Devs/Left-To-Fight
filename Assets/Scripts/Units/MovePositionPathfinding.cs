@@ -11,6 +11,7 @@ public class MovePositionPathfinding : MonoBehaviour, IMovePos
     [SerializeField]
     private float reachedTargetDistance;
 
+
     void Awake()
     {
         movement = GetComponent<IMoveVelocity>();

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public class ZombieFSM : MonoBehaviour, IController
+public class EnemyFSM : MonoBehaviour, IController
 {
     private IMovePos movement;
 
@@ -14,10 +14,16 @@ public class ZombieFSM : MonoBehaviour, IController
     private float idleTimer;
     private bool idle;
 
+    [SerializeField]
+    private float targetRange;
+
+    [SerializeField]
+    private Transform currentTarget;
+
     private enum State
     {
         roaming,
-        attacking,
+        chasing,
     }
 
     [SerializeField]
@@ -35,6 +41,8 @@ public class ZombieFSM : MonoBehaviour, IController
         startPos = transform.position;
         roamPos = GetRoamingArea();
         movement.SetMovePosition(roamPos);
+
+        currentTarget = FindNearestTarget();
     }
 
     void Update()
@@ -53,10 +61,24 @@ public class ZombieFSM : MonoBehaviour, IController
                             NewTarget();
                         }
                     }
+                    currentTarget = FindNearestTarget();
                     break;    
                 }
-            case State.attacking:
+            case State.chasing:
                 {
+                    if (currentTarget == null)
+                    {
+                        state = State.roaming;
+                        break;
+                    }
+                    else
+                    {
+                        movement.SetMovePosition(currentTarget.position);
+                        if (IsChaseBroken())
+                        {
+                            currentTarget = null;
+                        }
+                    }
 
                     break;
                 }
@@ -67,6 +89,7 @@ public class ZombieFSM : MonoBehaviour, IController
         roamPos = GetRoamingArea();
         movement.SetMovePosition(roamPos);
     }
+
 
     private Vector3 GetRoamingArea()
     {
@@ -94,6 +117,50 @@ public class ZombieFSM : MonoBehaviour, IController
     //Call received by Pathfinding
     public void TargetReached()
     {
-        StartIdle();
+        switch (state)
+        {
+            case State.roaming:
+                StartIdle();
+                break;
+
+            case State.chasing:
+                break;
+        }
+    }
+
+    private Transform FindNearestTarget()
+    {
+        GameObject[] targets = GameObject.FindGameObjectsWithTag("Human");
+        Transform closestTarget = targets[0].transform;
+
+        for (int i = 1; i < targets.Length; i++)
+        {
+            if (Vector3.Distance(targets[i].transform.position, transform.position) < Vector3.Distance(closestTarget.position, transform.position))
+            {
+                closestTarget = targets[i].transform;
+            }
+        }
+
+        if (Vector3.Distance(closestTarget.position, transform.position) < targetRange)
+        {
+            state = State.chasing;
+            return closestTarget;
+        }
+        else
+        {
+
+            return null;
+        }
+    }
+
+    private bool IsChaseBroken()
+    {
+        return (Vector3.Distance(transform.position, currentTarget.position)) > (targetRange * 1.2f);
+    }
+
+    void OnDrawGizmosSelected()
+    {
+        Gizmos.color = Color.red;
+        //Gizmos.DrawWireSphere(transform.position, targetRange);
     }
 }

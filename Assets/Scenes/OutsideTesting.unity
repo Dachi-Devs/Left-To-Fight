@@ -4905,8 +4905,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   pathfinderVisual: {fileID: 0}
-  gridX: 20
-  gridY: 12
+  gridX: 72
+  gridY: 50
   cellSize: 5
 --- !u!4 &273921950
 Transform:
@@ -5281,6 +5281,16 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6665693670105170840, guid: 0cdd8ca5e11f602499983e20ec011ba7,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 178
+      objectReference: {fileID: 0}
+    - target: {fileID: 6665693670105170840, guid: 0cdd8ca5e11f602499983e20ec011ba7,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0cdd8ca5e11f602499983e20ec011ba7, type: 3}
 --- !u!1 &946798980
@@ -5323,12 +5333,12 @@ PrefabInstance:
     - target: {fileID: 5803147911344291920, guid: 59ae2d064a142374d9c729ce7d05706e,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 178
       objectReference: {fileID: 0}
     - target: {fileID: 5803147911344291920, guid: 59ae2d064a142374d9c729ce7d05706e,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 5803147911344291920, guid: 59ae2d064a142374d9c729ce7d05706e,
         type: 3}
@@ -5612,7 +5622,7 @@ GameObject:
   - component: {fileID: 1741107758}
   m_Layer: 0
   m_Name: PlayerCharacter
-  m_TagString: Player
+  m_TagString: Human
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5650,7 +5660,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1741107750}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 133.3, y: 66.2, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 406687257}
@@ -5747,8 +5757,8 @@ GameObject:
   - component: {fileID: 2053223227}
   - component: {fileID: 2053223226}
   m_Layer: 0
-  m_Name: DummyTarget
-  m_TagString: Untagged
+  m_Name: EnemyTest
+  m_TagString: Unrest
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5792,7 +5802,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2053223221}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 59.8, y: 19.7, z: 0}
+  m_LocalPosition: {x: 186.9, y: 96.6, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1179165995}
@@ -5863,4 +5873,6 @@ MonoBehaviour:
   roamPos: {x: 0, y: 0, z: 0}
   idleMax: 3
   idleTimer: 0
+  targetRange: 40
+  currentTarget: {fileID: 0}
   state: 0

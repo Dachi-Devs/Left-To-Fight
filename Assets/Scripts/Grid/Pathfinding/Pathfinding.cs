@@ -5,8 +5,8 @@ public class Pathfinding
 {
     private const int MOVE_STRAIGHT_COST = 10;
     private const int MOVE_DIAGONAL_COST = 14;
-    
-    public static Pathfinding instance { get; private set; }
+
+    public static Pathfinding instance;
 
     private Grid<PathNode> grid;
     private List<PathNode> openList;
