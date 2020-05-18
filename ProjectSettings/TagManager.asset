@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Human
   - Unrest
+  - UnSpawn
   layers:
   - Default
   - TransparentFX
