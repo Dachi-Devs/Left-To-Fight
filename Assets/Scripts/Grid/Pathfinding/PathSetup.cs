@@ -15,6 +15,13 @@ public class PathSetup : MonoBehaviour
 
     private Vector2 originPos;
 
+    [SerializeField]
+    public Vector2 gridMax;
+
+    void Awake()
+    {
+        gridMax = new Vector2(gridX * cellSize, gridY * cellSize);
+    }
 
     void Start()
     {

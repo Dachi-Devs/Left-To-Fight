@@ -8,9 +8,6 @@ public class CameraManager : MonoBehaviour
     private Transform playerToFollow;
 
     [SerializeField]
-    private Transform levelCorner;
-
-    [SerializeField]
     private float speed;
 
     [SerializeField]
@@ -23,7 +20,7 @@ public class CameraManager : MonoBehaviour
     {
         cam = Camera.main;
         minBoundary = new Vector2(cam.orthographicSize * 16 / 9, cam.orthographicSize);
-        maxBoundary = new Vector2(levelCorner.position.x - cam.orthographicSize * 16 / 9, levelCorner.position.y - cam.orthographicSize);
+        maxBoundary = new Vector2(FindObjectOfType<PathSetup>().gridMax.x - cam.orthographicSize * 16 / 9, FindObjectOfType<PathSetup>().gridMax.y - cam.orthographicSize);
     }
 
     // Update is called once per frame
