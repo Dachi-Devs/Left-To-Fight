@@ -38,7 +38,8 @@ public class Grid<TGridObject>
             }
         }
 
-        bool showDebug = true;
+        bool showDebug = false;
+        //showDebug = true;
         if (showDebug)
         {
             TextMesh[,] debugTextArray = new TextMesh[width, height];
