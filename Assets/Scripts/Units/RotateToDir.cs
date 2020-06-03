@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class RotateToMouse : MonoBehaviour, IRotate
+public class RotateToDir : MonoBehaviour, IRotate
 {
-    public bool allowRotation = false;
+    public bool allowRotation = true;
     private Vector3 targetPos;
 
     public void SetRotation(float zRot)
@@ -24,11 +26,6 @@ public class RotateToMouse : MonoBehaviour, IRotate
     {
         if (allowRotation)
         {
-            if (targetPos == null)
-            {
-                targetPos = Input.mousePosition;
-                targetPos = Camera.main.ScreenToWorldPoint(targetPos);
-            }
             Vector2 rotation = targetPos - transform.position;
             float angle = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg - 90;
             SetRotation(angle);

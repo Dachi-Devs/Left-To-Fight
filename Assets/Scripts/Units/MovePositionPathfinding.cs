@@ -8,6 +8,7 @@ public class MovePositionPathfinding : MonoBehaviour, IMovePos
     [SerializeField]
     private int pathIndex = 0;
     private IMoveVelocity movement;
+    private IRotate rotation;
     [SerializeField]
     private float reachedTargetDistance;
 
@@ -15,6 +16,7 @@ public class MovePositionPathfinding : MonoBehaviour, IMovePos
     void Awake()
     {
         movement = GetComponent<IMoveVelocity>();
+        rotation = GetComponent<IRotate>();
     }
 
     public void SetMovePosition(Vector3 targetPos)
@@ -40,6 +42,7 @@ public class MovePositionPathfinding : MonoBehaviour, IMovePos
             Vector3 targetPosition = pathVectorList[pathIndex];
             if (Vector3.Distance(transform.position, targetPosition) > reachedTargetDistance)
             {
+                rotation.SetDirection(targetPosition);
                 Vector3 moveDir = (targetPosition - transform.position).normalized;
                 movement.SetVelocity(moveDir);
             }
@@ -64,5 +67,10 @@ public class MovePositionPathfinding : MonoBehaviour, IMovePos
     public Vector3 GetPosition()
     {
         return transform.position;
+    }
+
+    private void RotateToFace(Vector3 direction)
+    {
+
     }
 }
