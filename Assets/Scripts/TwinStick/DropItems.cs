@@ -4,15 +4,26 @@ using UnityEngine;
 
 public class DropItems : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public DropTableSO dropTable;
+    public GameObject dropPrefab;
+
+    public void Drop()
     {
-        
+        ItemSlot itemFromTable = dropTable.GetItem();
+        DropItem(itemFromTable);
     }
 
-    // Update is called once per frame
-    void Update()
+    private void DropItem(ItemSlot item)
     {
-        
+        GameObject drop = Instantiate(dropPrefab, transform.position, Quaternion.identity);
+        drop.GetComponent<ItemSlotWorld>().SetItemSlot(item);
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Drop();
+        }
     }
 }

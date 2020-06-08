@@ -24,11 +24,8 @@ public class RotateToMouse : MonoBehaviour, IRotate
     {
         if (allowRotation)
         {
-            if (targetPos == null)
-            {
-                targetPos = Input.mousePosition;
-                targetPos = Camera.main.ScreenToWorldPoint(targetPos);
-            }
+            targetPos = Input.mousePosition;
+            targetPos = Camera.main.ScreenToWorldPoint(targetPos);
             Vector2 rotation = targetPos - transform.position;
             float angle = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg - 90;
             SetRotation(angle);

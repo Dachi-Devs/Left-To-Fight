@@ -1516,6 +1516,7 @@ GameObject:
   - component: {fileID: 767175150}
   - component: {fileID: 767175151}
   - component: {fileID: 767175152}
+  - component: {fileID: 767175153}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -1570,6 +1571,18 @@ MonoBehaviour:
   enemyPrefab: {fileID: 4147599600033292212, guid: 8669d64b64a2fe9469610f6296bfd727,
     type: 3}
   spawnTag: UnSpawn
+--- !u!114 &767175153
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 767175149}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9744af23a5aa5ae44a7935f877b4b8d8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &867671855
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3923,6 +3936,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerCharacter
       objectReference: {fileID: 0}
+    - target: {fileID: 5597081155860891457, guid: a4f5f5f42b646e04aa3e342997f73f8c,
+        type: 3}
+      propertyPath: dropPrefab
+      value: 
+      objectReference: {fileID: 7512954118608138935, guid: 01c250414d025284f844529836f9a43f,
+        type: 3}
+    - target: {fileID: 5597081155860891457, guid: a4f5f5f42b646e04aa3e342997f73f8c,
+        type: 3}
+      propertyPath: dropTable
+      value: 
+      objectReference: {fileID: 11400000, guid: f94700264f65c664ba4958ebe351158a,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a4f5f5f42b646e04aa3e342997f73f8c, type: 3}
 --- !u!1001 &5356167603301481463
