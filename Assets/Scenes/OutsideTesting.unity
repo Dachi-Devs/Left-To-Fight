@@ -1583,6 +1583,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9744af23a5aa5ae44a7935f877b4b8d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dropPrefab: {fileID: 7512954118608138935, guid: 01c250414d025284f844529836f9a43f,
+    type: 3}
 --- !u!1001 &867671855
 PrefabInstance:
   m_ObjectHideFlags: 0

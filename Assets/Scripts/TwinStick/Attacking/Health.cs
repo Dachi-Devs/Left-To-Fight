@@ -42,6 +42,9 @@ public class Health : MonoBehaviour
     {
         if (currentHealth <= 0)
         {
+            DropItems drop = GetComponent<DropItems>();
+            if (drop != null)
+                drop.Drop();
             Destroy(gameObject);
         }
     }

@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Baseball Bat
   isStackable: 0
-  sprite: {fileID: 2029542551908640097, guid: 4794ac14777932a49a9a9c028697eb0c, type: 3}
+  sprite: {fileID: -9075936618163766259, guid: 4794ac14777932a49a9a9c028697eb0c, type: 3}
   quality: 2

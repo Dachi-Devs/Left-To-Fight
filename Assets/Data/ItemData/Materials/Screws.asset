@@ -14,4 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemName: Screws
   isStackable: 1
-  sprite: {fileID: -3004918560657441691, guid: 4794ac14777932a49a9a9c028697eb0c, type: 3}
+  sprite: {fileID: -2064859774160998932, guid: 4794ac14777932a49a9a9c028697eb0c, type: 3}
+  quality: 0

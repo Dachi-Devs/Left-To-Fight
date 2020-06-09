@@ -5,7 +5,6 @@ using UnityEngine;
 public class DropItems : MonoBehaviour
 {
     public DropTableSO dropTable;
-    public GameObject dropPrefab;
 
     public void Drop()
     {
@@ -15,7 +14,7 @@ public class DropItems : MonoBehaviour
 
     private void DropItem(ItemSlot item)
     {
-        GameObject drop = Instantiate(dropPrefab, transform.position, Quaternion.identity);
+        GameObject drop = Instantiate(DropManager.Instance.dropPrefab, transform.position, Quaternion.identity);
         drop.GetComponent<ItemSlotWorld>().SetItemSlot(item);
     }
 

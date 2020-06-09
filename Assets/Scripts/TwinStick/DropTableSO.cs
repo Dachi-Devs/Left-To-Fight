@@ -16,7 +16,7 @@ public class DropTableSO : ScriptableObject
         ItemSlot returnedItem = tableContents[0];
         foreach(ItemSlot i in tableContents)
         {
-            int slotTickets = DropManager.qualityValues[i.item.quality.ToString()];
+            int slotTickets = DropManager.Instance.qualityValues[i.item.quality.ToString()];
             Debug.Log(slotTickets);
             itemIndex -= slotTickets;
             if (itemIndex <= 0)
@@ -33,7 +33,7 @@ public class DropTableSO : ScriptableObject
         totalItemLength = 0;
         foreach (ItemSlot i in tableContents)
         {
-            int count = DropManager.qualityValues[i.item.quality.ToString()];
+            int count = DropManager.Instance.qualityValues[i.item.quality.ToString()];
             totalItemLength += count;
         }
     }
