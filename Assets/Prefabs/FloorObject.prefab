@@ -1,5 +1,67 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1180590093318231787
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1060275860948025802}
+  - component: {fileID: 3403248367427931549}
+  - component: {fileID: 5426214838449052872}
+  m_Layer: 8
+  m_Name: Interaction
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1060275860948025802
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180590093318231787}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7512954118608138923}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3403248367427931549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180590093318231787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88b602de1c5229b4b90a049731e261d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  highlightColour: {r: 227, g: 182, b: 36, a: 1}
+  spr: {fileID: 0}
+--- !u!58 &5426214838449052872
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1180590093318231787}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1.5
 --- !u!1 &7512954118608138935
 GameObject:
   m_ObjectHideFlags: 0
@@ -11,9 +73,9 @@ GameObject:
   - component: {fileID: 7512954118608138923}
   - component: {fileID: 7512954118608138920}
   - component: {fileID: 7512954118608138921}
-  - component: {fileID: 7512954118608138934}
+  - component: {fileID: 5177922563497261025}
   m_Layer: 0
-  m_Name: TestFloorObject
+  m_Name: FloorObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -29,7 +91,8 @@ Transform:
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 4, y: 4, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1060275860948025802}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -45,9 +108,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c1623bae43bbfb45a3a2502b509c95f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  itemSlot:
-    item: {fileID: 11400000, guid: c718e26ec4005244fb5a5842e3bcbe3d, type: 2}
-    quantity: 1
+  itemDropped:
+    item: {fileID: 0}
+    quantity: 0
   humanTag: Human
 --- !u!212 &7512954118608138921
 SpriteRenderer:
@@ -100,29 +163,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &7512954118608138934
-BoxCollider2D:
+--- !u!114 &5177922563497261025
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7512954118608138935}
   m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.56, y: 2.56}
-    newSize: {x: 5.12, y: 5.12}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 2, y: 2}
-  m_EdgeRadius: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f054f51043f9edb44a03888e42502cab, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

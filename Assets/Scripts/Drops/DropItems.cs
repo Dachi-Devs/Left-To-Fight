@@ -16,6 +16,7 @@ public class DropItems : MonoBehaviour
     {
         GameObject drop = Instantiate(DropManager.Instance.dropPrefab, transform.position, Quaternion.identity);
         drop.GetComponent<ItemSlotWorld>().SetItemSlot(item);
+        drop.name = item.item.name;
     }
 
     private void Update()

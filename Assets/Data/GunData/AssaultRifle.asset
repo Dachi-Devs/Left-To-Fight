@@ -15,6 +15,6 @@ MonoBehaviour:
   bulletSO: {fileID: 11400000, guid: 6e7ea7146c54e214ebdd6250e994c32d, type: 2}
   fireRate: 0.4
   fireOffset: 6.75
-  inaccuracy: 7
+  inaccuracy: 2
   gunSprite: {fileID: 6662145457819137948, guid: 6a3ad3305cc067e4c942da9d68aea96d,
     type: 3}

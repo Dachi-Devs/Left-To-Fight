@@ -18,6 +18,7 @@ public class Inventory : IItemContainer
 
     public bool AddItem(ItemSlot item)
     {
+        Debug.Log(item.item + " " + item.quantity);
         ItemSlot temp = NewItem(item.item, item.quantity);
         if (IsFull())
         {

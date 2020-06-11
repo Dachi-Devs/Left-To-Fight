@@ -11,13 +11,11 @@ public class DropTableSO : ScriptableObject
         GetTableLength();
 
         int itemIndex = Random.Range(1, totalItemLength);
-        Debug.Log(itemIndex);
 
         ItemSlot returnedItem = tableContents[0];
         foreach(ItemSlot i in tableContents)
         {
             int slotTickets = DropManager.Instance.qualityValues[i.item.quality.ToString()];
-            Debug.Log(slotTickets);
             itemIndex -= slotTickets;
             if (itemIndex <= 0)
             {

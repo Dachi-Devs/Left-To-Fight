@@ -3,7 +3,7 @@
 public class Bullet : MonoBehaviour
 {
     private BulletSO bulletSO;
-    private float lifespan = 3f;
+    private float lifespan = 1.5f;
     private float speed = 125f;
 
 
@@ -11,6 +11,7 @@ public class Bullet : MonoBehaviour
     {
         bulletSO = bullSO;
         GetComponentInChildren<SpriteRenderer>().sprite = bulletSO.bulletSprite;
+        gameObject.name = bullSO.name;
     }
 
     void Update()

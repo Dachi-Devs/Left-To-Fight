@@ -13,14 +13,6 @@ public class ItemSlotWorld : MonoBehaviour
     private void Start()
     {
         SetItemSlot(itemDropped);
-        GetComponent<Collider2D>().enabled = false;
-        StartCoroutine(EnableHitbox());
-    }
-
-    private IEnumerator EnableHitbox()
-    {
-        yield return new WaitForSeconds(2);
-        GetComponent<Collider2D>().enabled = true;
     }
 
     public void SetItemSlot(ItemSlot itemSlot)
@@ -39,13 +31,4 @@ public class ItemSlotWorld : MonoBehaviour
     }
 
     public ItemSlot GetItemSlot() => itemDropped;
-
-    public void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.tag == humanTag)
-        {
-            collision.gameObject.GetComponent<PlayerInventory>().inventory.AddItem(itemDropped);
-            Destroy(gameObject);
-        }
-    }
 }
