@@ -8,6 +8,7 @@ TagManager:
   - Unrest
   - UnSpawn
   - Environment
+  - DroppedItem
   layers:
   - Default
   - TransparentFX
@@ -47,6 +48,9 @@ TagManager:
     locked: 0
   - name: DecalGround
     uniqueID: 2285735409
+    locked: 0
+  - name: DroppedItem
+    uniqueID: 2022555527
     locked: 0
   - name: Unrest
     uniqueID: 1716280971

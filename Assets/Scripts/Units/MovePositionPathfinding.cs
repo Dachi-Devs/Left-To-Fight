@@ -40,9 +40,11 @@ public class MovePositionPathfinding : MonoBehaviour, IMovePos
         if (pathVectorList != null)
         {
             Vector3 targetPosition = pathVectorList[pathIndex];
-            if (Vector3.Distance(transform.position, targetPosition) > reachedTargetDistance)
+            float distanceToTaget = Vector3.Distance(transform.position, targetPosition);
+            if (distanceToTaget > reachedTargetDistance)
             {
-                rotation.SetDirection(targetPosition);
+                if (distanceToTaget > 1f)
+                    rotation.SetDirection(targetPosition);
                 Vector3 moveDir = (targetPosition - transform.position).normalized;
                 movement.SetVelocity(moveDir);
             }
@@ -67,10 +69,5 @@ public class MovePositionPathfinding : MonoBehaviour, IMovePos
     public Vector3 GetPosition()
     {
         return transform.position;
-    }
-
-    private void RotateToFace(Vector3 direction)
-    {
-
     }
 }

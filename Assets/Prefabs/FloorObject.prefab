@@ -44,7 +44,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 88b602de1c5229b4b90a049731e261d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  highlightColour: {r: 227, g: 182, b: 36, a: 1}
+  highlightColour: {r: 1, g: 1, b: 0, a: 1}
   spr: {fileID: 0}
 --- !u!58 &5426214838449052872
 CircleCollider2D:
@@ -76,7 +76,7 @@ GameObject:
   - component: {fileID: 5177922563497261025}
   m_Layer: 0
   m_Name: FloorObject
-  m_TagString: Untagged
+  m_TagString: DroppedItem
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -148,8 +148,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 2022555527
+  m_SortingLayer: -2
   m_SortingOrder: 0
   m_Sprite: {fileID: -2064859774160998932, guid: 4794ac14777932a49a9a9c028697eb0c,
     type: 3}

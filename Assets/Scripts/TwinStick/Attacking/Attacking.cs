@@ -22,6 +22,4 @@ public class Attacking : MonoBehaviour
             attackController.EndAttack();
         }
     }
-
-
 }

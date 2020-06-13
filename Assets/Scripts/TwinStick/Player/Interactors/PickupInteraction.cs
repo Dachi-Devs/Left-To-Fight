@@ -7,6 +7,7 @@ public class PickupInteraction : Interaction
     private void Start()
     {
         itemSlotWorld = transform.root.GetComponent<ItemSlotWorld>();
+        spr = transform.root.GetComponent<SpriteRenderer>();
     }
 
     public override void InteractWithObject(GameObject interactor) => Pickup(interactor);
