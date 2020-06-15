@@ -52,11 +52,14 @@ TagManager:
   - name: DroppedItem
     uniqueID: 2022555527
     locked: 0
+  - name: Default
+    uniqueID: 0
+    locked: 0
   - name: Unrest
     uniqueID: 1716280971
     locked: 0
-  - name: Default
-    uniqueID: 0
+  - name: Human
+    uniqueID: 2548473487
     locked: 0
   - name: DecalAbove
     uniqueID: 2452360255
