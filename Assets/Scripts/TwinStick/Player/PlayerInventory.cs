@@ -5,9 +5,18 @@ public class PlayerInventory : MonoBehaviour, IItemContainer
 {
     public Inventory inventory;
 
+    void Start()
+    {
+        //FindObjectOfType<InventoryUI>().SetInventory(inventory);
+        //FindObjectOfType<CraftingUI>().SetInventory(inventory);
+        //FindObjectOfType<ListInventoryUI>().SetInventory(inventory);
+    }
+
     public bool AddItem(ItemSlot item) => inventory.AddItem(item);
     public bool ContainsItem(ItemSlot item) => inventory.ContainsItem(item);
     public int GetCurrentOccupiedSlots() => inventory.GetCurrentOccupiedSlots();
+    public void SetInventorySize(int size) => inventory.SetInventorySize(size);
+    public void AddToInventorySize(int sizeToAdd) => inventory.AddToInventorySize(sizeToAdd);
     public int GetInventorySize() => inventory.GetInventorySize();
     public List<ItemSlot> GetItemList() => inventory.GetItemList();
     public bool IsFull() => inventory.IsFull();

@@ -15,7 +15,7 @@ public class UIManager : MonoBehaviour
         {
             ToggleListInventory();
             if (ListInventory.activeSelf == true)
-                ListInventory.GetComponent<ListInventoryUI>().UpdateInventoryList();
+                ListInventory.GetComponent<IInventoryUI>().UpdateInventoryList();
         }
     }
 }

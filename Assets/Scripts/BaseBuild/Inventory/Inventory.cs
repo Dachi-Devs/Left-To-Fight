@@ -10,8 +10,9 @@ public class Inventory : ScriptableObject, IItemContainer
 
     [SerializeField]
     private List<ItemSlot> itemSlots;
-    private int inventorySize = 15;
-    private int maxStack = 99;
+    [SerializeField]
+    private int inventorySize;
+    private int maxStack = 64;
     public Inventory()
     {
         itemSlots = new List<ItemSlot>();
@@ -19,11 +20,9 @@ public class Inventory : ScriptableObject, IItemContainer
 
     public bool AddItem(ItemSlot item)
     {
-        Debug.Log(item.item + " " + item.quantity);
         ItemSlot temp = NewItem(item.item, item.quantity);
         if (IsFull())
         {
-            Debug.Log("INV FULL");
             return false;
         }
         foreach (ItemSlot itemSlot in itemSlots)
@@ -135,6 +134,16 @@ public class Inventory : ScriptableObject, IItemContainer
     public List<ItemSlot> GetItemList()
     {
         return itemSlots;
+    }
+
+    public void SetInventorySize(int size)
+    {
+        inventorySize = size;
+    }
+
+    public void AddToInventorySize(int sizeToAdd)
+    {
+        inventorySize += sizeToAdd;
     }
 
     public int GetInventorySize()

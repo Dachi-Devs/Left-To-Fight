@@ -1,14 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-public class ListInventoryUI : MonoBehaviour
+public class BackpackUI : MonoBehaviour, IInventoryUI
 {
     [SerializeField]
-    private Transform listPanel;
+    private Transform gridPanel;
     [SerializeField]
-    private GameObject listItem;
+    private GameObject gridItem;
     [SerializeField]
-    private GameObject emptyListItem;
+    private GameObject emptyGridItem;
     [SerializeField]
     private Inventory inventory;
     [SerializeField]
@@ -17,24 +18,28 @@ public class ListInventoryUI : MonoBehaviour
     void Start()
     {
         itemList = new List<ItemSlot>();
+        if (inventory == null)
+        {
+            Debug.LogError("UI INVENTORY NULL, PLS FIX");
+        }
+        inventory.OnItemListChanged += Inventory_OnItemListChanged;
         UpdateInventoryList();
     }
 
     public void SetInventory(Inventory inventory)
     {
         this.inventory = inventory;
-        inventory.OnItemListChanged += Inventory_OnItemListChanged;
     }
 
-    private void Inventory_OnItemListChanged(object sender, System.EventArgs e)
+    public void Inventory_OnItemListChanged(object sender, System.EventArgs e)
     {
         UpdateInventoryList();
     }
 
     public void UpdateInventoryList()
-    {        
+    {
         itemList = inventory.GetItemList();
-        foreach (Transform child in listPanel)
+        foreach (Transform child in gridPanel)
         {
             Destroy(child.gameObject);
         }
@@ -43,8 +48,8 @@ public class ListInventoryUI : MonoBehaviour
         {
             foreach (ItemSlot item in itemList)
             {
-                GameObject i = Instantiate(listItem, listPanel);
-                i.GetComponent<ListItemUI>().UpdateItem(item);
+                GameObject i = Instantiate(gridItem, gridPanel);
+                i.GetComponent<GridItemUI>().UpdateItem(item);
             }
         }
 
@@ -52,7 +57,7 @@ public class ListInventoryUI : MonoBehaviour
         {
             for (int i = itemList.Count; i < inventory.GetInventorySize(); i++)
             {
-                GameObject empty = Instantiate(emptyListItem, listPanel);
+                GameObject empty = Instantiate(emptyGridItem, gridPanel);
             }
         }
     }
@@ -116,7 +121,7 @@ public class ListInventoryUI : MonoBehaviour
         UpdateInventoryList();
     }
 
-    private void SwapItems(int a, int b)
+    public void SwapItems(int a, int b)
     {
         ItemSlot temp = itemList[a];
         itemList[a] = itemList[b];

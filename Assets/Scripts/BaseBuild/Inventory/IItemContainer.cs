@@ -8,6 +8,8 @@ public interface IItemContainer
     bool AddItem(ItemSlot item);
     bool IsFull();
     bool RemoveQuantity(ItemSlot item, int amountToRemove);
+    void SetInventorySize(int size);
+    void AddToInventorySize(int sizeToAdd);
     int GetInventorySize();
     int GetCurrentOccupiedSlots();
     bool ClearInventory();

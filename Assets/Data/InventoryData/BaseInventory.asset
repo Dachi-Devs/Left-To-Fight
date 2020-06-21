@@ -13,11 +13,8 @@ MonoBehaviour:
   m_Name: BaseInventory
   m_EditorClassIdentifier: 
   itemSlots:
-  - item: {fileID: 11400000, guid: 6716ac9c643b2d947a23d6a8b684064d, type: 2}
+  - item: {fileID: 11400000, guid: 0da1599f3f110564bbb1fa87e1d48647, type: 2}
     quantity: 1
-  - item: {fileID: 11400000, guid: c718e26ec4005244fb5a5842e3bcbe3d, type: 2}
-    quantity: 2
   - item: {fileID: 11400000, guid: 21a27f4db3f6103488d446bd2281c351, type: 2}
     quantity: 1
-  - item: {fileID: 11400000, guid: c5a0258e003c6e14ea00a96a7598d8d9, type: 2}
-    quantity: 1
+  inventorySize: 20
