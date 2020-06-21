@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[CreateAssetMenu(fileName = "New Inventory", menuName = "Items/New Inventory")]
 [Serializable]
-public class Inventory : IItemContainer
+public class Inventory : ScriptableObject, IItemContainer
 {
     public event EventHandler OnItemListChanged;
 
@@ -139,5 +140,23 @@ public class Inventory : IItemContainer
     public int GetInventorySize()
     {
         return inventorySize;
+    }
+
+    public int GetCurrentOccupiedSlots()
+    {
+        int count = 0;
+        foreach (ItemSlot item in itemSlots)
+            count++;
+
+        return count;
+    }
+
+    public bool ClearInventory()
+    {
+        foreach(ItemSlot itemSlot in itemSlots)
+        {
+            itemSlots = new List<ItemSlot>();
+        }
+        return true;
     }
 }

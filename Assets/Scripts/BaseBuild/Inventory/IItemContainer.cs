@@ -9,5 +9,7 @@ public interface IItemContainer
     bool IsFull();
     bool RemoveQuantity(ItemSlot item, int amountToRemove);
     int GetInventorySize();
+    int GetCurrentOccupiedSlots();
+    bool ClearInventory();
     List<ItemSlot> GetItemList();
 }

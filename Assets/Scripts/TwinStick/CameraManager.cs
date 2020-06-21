@@ -2,10 +2,20 @@
 
 public class CameraManager : MonoBehaviour
 {
+    public enum CamTargetMode
+    { 
+        topDown,
+        baseManage,
+        cutscene
+    }
+
+    [SerializeField]
+    private CamTargetMode targetMode; 
+
     private Camera cam;
 
     [SerializeField]
-    private Transform playerToFollow;
+    private Transform targetToFollow;
 
     [SerializeField]
     private float speed;
@@ -19,19 +29,37 @@ public class CameraManager : MonoBehaviour
     void Start()
     {
         cam = Camera.main;
-        minBoundary = new Vector2(cam.orthographicSize * 16 / 9, cam.orthographicSize);
-        maxBoundary = new Vector2(FindObjectOfType<PathSetup>().gridMax.x - cam.orthographicSize * 16 / 9, FindObjectOfType<PathSetup>().gridMax.y - cam.orthographicSize);
+        switch (targetMode)
+        {
+            case CamTargetMode.topDown:        
+                minBoundary = new Vector2(cam.orthographicSize * 16 / 9, cam.orthographicSize);
+                maxBoundary = new Vector2(FindObjectOfType<PathSetup>().gridMax.x - cam.orthographicSize * 16 / 9, FindObjectOfType<PathSetup>().gridMax.y - cam.orthographicSize);
+                break;
+            case CamTargetMode.baseManage:
+                break;
+            case CamTargetMode.cutscene:
+                break;
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        FollowTarget();
+        switch (targetMode)
+        {
+            case CamTargetMode.topDown:
+                FollowTarget();
+                break;
+            case CamTargetMode.baseManage:
+                break;
+            case CamTargetMode.cutscene:
+                break;
+        }
     }
 
     private void FollowTarget()
     {
-        Vector3 camMove = Vector3.Lerp(transform.position, playerToFollow.position, speed * Time.deltaTime);
+        Vector3 camMove = Vector3.Lerp(transform.position, targetToFollow.position, speed * Time.deltaTime);
         camMove = new Vector3(
             Mathf.Clamp(camMove.x, minBoundary.x, maxBoundary.x),
             Mathf.Clamp(camMove.y, minBoundary.y, maxBoundary.y),

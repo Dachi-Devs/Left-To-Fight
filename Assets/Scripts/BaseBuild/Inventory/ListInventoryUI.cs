@@ -1,5 +1,4 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class ListInventoryUI : MonoBehaviour
@@ -10,12 +9,10 @@ public class ListInventoryUI : MonoBehaviour
     private GameObject listItem;
     [SerializeField]
     private GameObject emptyListItem;
+    [SerializeField]
     private Inventory inventory;
+    [SerializeField]
     private List<ItemSlot> itemList;
-
-    public List<ItemSlot> testItems;
-    public ItemSlot testAxe;
-    public ItemSlot testScrew;
 
     void Start()
     {
@@ -31,12 +28,12 @@ public class ListInventoryUI : MonoBehaviour
 
     private void Inventory_OnItemListChanged(object sender, System.EventArgs e)
     {
-        itemList = inventory.GetItemList();
         UpdateInventoryList();
     }
 
     public void UpdateInventoryList()
-    {
+    {        
+        itemList = inventory.GetItemList();
         foreach (Transform child in listPanel)
         {
             Destroy(child.gameObject);
@@ -60,24 +57,6 @@ public class ListInventoryUI : MonoBehaviour
         }
     }
 
-    public void AddTestItems()
-    {
-        foreach (ItemSlot item in testItems)
-        {
-            inventory.AddItem(item);
-        }
-    }
-
-    public void TestStacking()
-    {
-        inventory.AddItem(testAxe);
-    }
-
-    public void TestQuantity()
-    {
-        inventory.AddItem(testScrew);
-    }
-
     public void UpdateInvButton()
     {
         UpdateInventoryList();
@@ -87,11 +66,6 @@ public class ListInventoryUI : MonoBehaviour
     {
         itemList.Reverse();
         UpdateInventoryList();
-    }
-
-    public void OutputScrewCount()
-    {
-        Debug.Log(inventory.ItemCount(testScrew));
     }
 
     public void SortInventoryAlphabetical()

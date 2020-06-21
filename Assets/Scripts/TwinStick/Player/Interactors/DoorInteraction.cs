@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 public class DoorInteraction : Interaction
 {
     public bool unlocked;
+    public string sceneToLoad;
 
     public override void InteractWithObject(GameObject interactor)
     {
@@ -12,6 +13,6 @@ public class DoorInteraction : Interaction
 
     void OpenDoor()
     {
-        Debug.Log("LEAVE LEVEL");
+        FindObjectOfType<SceneTransitionManager>().TransitionToScene(sceneToLoad);
     }
 }

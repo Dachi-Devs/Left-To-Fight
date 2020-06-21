@@ -14,6 +14,8 @@ public class UIManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
         {
             ToggleListInventory();
+            if (ListInventory.activeSelf == true)
+                ListInventory.GetComponent<ListInventoryUI>().UpdateInventoryList();
         }
     }
 }
