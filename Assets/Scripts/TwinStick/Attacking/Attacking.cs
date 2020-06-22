@@ -3,17 +3,18 @@
 public class Attacking : MonoBehaviour
 {
     IAttack attackController;
+    private bool isAttacking;
 
     // Start is called before the first frame update
     void Start()
     {
-        attackController = GetComponentInChildren<GunController>();
+        attackController = GetComponentInChildren<IAttack>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetAxisRaw("FirePrimary") == 1)
+        if (isAttacking)
         {
             attackController.StartAttack();
         }
@@ -22,4 +23,6 @@ public class Attacking : MonoBehaviour
             attackController.EndAttack();
         }
     }
+
+    public void SetAttacking(bool t) => isAttacking = t;
 }

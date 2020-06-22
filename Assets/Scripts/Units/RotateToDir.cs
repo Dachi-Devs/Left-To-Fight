@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class RotateToDir : MonoBehaviour, IRotate
 {
     public bool allowRotation = true;
     private Vector3 targetPos;
+    private Transform targetObject;
     public float rotationLimit;
 
     public Quaternion targetAngle;
@@ -29,10 +28,19 @@ public class RotateToDir : MonoBehaviour, IRotate
         targetPos = target;
     }
 
+    public void SetTargetObject(Transform target)
+    {
+        targetObject = target;
+    }
+
     void Update()
     {
         if (allowRotation)
         {
+            if (targetObject != null)
+            {
+                targetPos = targetObject.position;
+            }
             Vector2 rotation = targetPos - transform.position;
             float angle = Mathf.Atan2(rotation.y, rotation.x) * Mathf.Rad2Deg - 90;
             SetRotation(angle);

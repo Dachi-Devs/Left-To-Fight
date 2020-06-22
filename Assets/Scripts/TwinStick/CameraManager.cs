@@ -59,12 +59,15 @@ public class CameraManager : MonoBehaviour
 
     private void FollowTarget()
     {
-        Vector3 camMove = Vector3.Lerp(transform.position, targetToFollow.position, speed * Time.deltaTime);
-        camMove = new Vector3(
-            Mathf.Clamp(camMove.x, minBoundary.x, maxBoundary.x),
-            Mathf.Clamp(camMove.y, minBoundary.y, maxBoundary.y),
-            camMove.z);
+        if (targetToFollow != null)
+        {
+            Vector3 camMove = Vector3.Lerp(transform.position, targetToFollow.position, speed * Time.deltaTime);
+            camMove = new Vector3(
+                Mathf.Clamp(camMove.x, minBoundary.x, maxBoundary.x),
+                Mathf.Clamp(camMove.y, minBoundary.y, maxBoundary.y),
+                camMove.z);
 
-        transform.position = new Vector3(camMove.x, camMove.y, -10f);
+            transform.position = new Vector3(camMove.x, camMove.y, -10f);
+        }
     }
 }

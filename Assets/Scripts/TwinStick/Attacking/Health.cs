@@ -1,9 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System;
 using UnityEngine;
 
 public class Health : MonoBehaviour
 {
+    public EventHandler OnHealthChanged;
+
     [SerializeField]
     private float maxHealth;
 
@@ -35,6 +36,7 @@ public class Health : MonoBehaviour
         else
             finalDamage = damageToTake;
         currentHealth -= finalDamage;
+        OnHealthChanged?.Invoke(this, EventArgs.Empty);
         CheckHealth();
     }
 
@@ -55,5 +57,11 @@ public class Health : MonoBehaviour
             currentHealth = maxHealth;
         else
             currentHealth += healthToHeal;
+        OnHealthChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    public float GetHealth()
+    {
+        return currentHealth;
     }
 }

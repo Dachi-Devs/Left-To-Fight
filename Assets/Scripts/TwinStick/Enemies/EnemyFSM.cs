@@ -15,7 +15,12 @@ public class EnemyFSM : MonoBehaviour, IController
     private bool idle;
 
     [SerializeField]
+    private float attackRange;
+
+    [SerializeField]
     private float targetRange;
+
+    private Transform playerOffset;
 
     [SerializeField]
     private Transform currentTarget;
@@ -58,9 +63,10 @@ public class EnemyFSM : MonoBehaviour, IController
                         else
                         {
                             idle = false;
-                            NewTarget();
+                            movement.SetMovePosition(NewTarget());
                         }
                     }
+                    GetComponentInChildren<MeleeAttack>().EndAttack();
                     currentTarget = FindNearestTarget();
                     break;    
                 }
@@ -73,23 +79,38 @@ public class EnemyFSM : MonoBehaviour, IController
                     }
                     else
                     {
-                        movement.SetMovePosition(currentTarget.position);
+                        Vector3 finalTargetPosition = currentTarget.position;
+                        finalTargetPosition = Vector3.MoveTowards(finalTargetPosition, transform.position, 10f);
+
+
+                        movement.SetMovePosition(finalTargetPosition);
+
+                        if (Vector3.Distance(transform.position, currentTarget.position) < attackRange)
+                        {
+                            GetComponent<RotateToDir>().SetTargetObject(currentTarget);
+                            GetComponentInChildren<MeleeAttack>().StartAttack();
+                        }
+
+                        else
+                        {
+                            GetComponent<RotateToDir>().SetTargetObject(null);
+                            GetComponentInChildren<MeleeAttack>().EndAttack();
+                        }
+
                         if (IsChaseBroken())
                         {
                             currentTarget = null;
                         }
                     }
-
                     break;
                 }
         }
     }
-    private void NewTarget()
+    private Vector3 NewTarget()
     {
         roamPos = GetRoamingArea();
-        movement.SetMovePosition(roamPos);
+        return roamPos;
     }
-
 
     private Vector3 GetRoamingArea()
     {
@@ -124,6 +145,7 @@ public class EnemyFSM : MonoBehaviour, IController
                 break;
 
             case State.chasing:
+
                 break;
         }
     }
@@ -131,26 +153,25 @@ public class EnemyFSM : MonoBehaviour, IController
     private Transform FindNearestTarget()
     {
         GameObject[] targets = GameObject.FindGameObjectsWithTag("Human");
-        Transform closestTarget = targets[0].transform;
-
-        for (int i = 1; i < targets.Length; i++)
+        if (targets.Length > 0)
         {
-            if (Vector3.Distance(targets[i].transform.position, transform.position) < Vector3.Distance(closestTarget.position, transform.position))
+            Transform closestTarget = targets[0].transform;
+
+            for (int i = 1; i < targets.Length; i++)
             {
-                closestTarget = targets[i].transform;
+                if (Vector3.Distance(targets[i].transform.position, transform.position) < Vector3.Distance(closestTarget.position, transform.position))
+                {
+                    closestTarget = targets[i].transform;
+                }
+            }
+
+            if (Vector3.Distance(closestTarget.position, transform.position) < targetRange)
+            {
+                state = State.chasing;
+                return closestTarget;
             }
         }
-
-        if (Vector3.Distance(closestTarget.position, transform.position) < targetRange)
-        {
-            state = State.chasing;
-            return closestTarget;
-        }
-        else
-        {
-
-            return null;
-        }
+        return null;
     }
 
     private bool IsChaseBroken()

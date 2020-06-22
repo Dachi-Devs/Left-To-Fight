@@ -18,12 +18,4 @@ public class DropItems : MonoBehaviour
         drop.GetComponent<ItemSlotWorld>().SetItemSlot(item);
         drop.name = item.item.name;
     }
-
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Drop();
-        }
-    }
 }
