@@ -2120,7 +2120,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acd60b3d082686346b0b67904063a6c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemyType: {fileID: 11400000, guid: fa1e6955252dddd45bf28e07191173c2, type: 2}
+  enemyType: {fileID: 11400000, guid: d32f04148dbd974448e7ad398bc4c90f, type: 2}
 --- !u!1001 &732954647
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2386,7 +2386,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnTag: UnSpawn
-  enemyP: {fileID: 4147599600033292212, guid: 8669d64b64a2fe9469610f6296bfd727, type: 3}
+  enemyPrefab: {fileID: 4147599600033292212, guid: 8669d64b64a2fe9469610f6296bfd727,
+    type: 3}
+  hordeDelay: 3
+  hordeEnemySO: {fileID: 11400000, guid: fa1e6955252dddd45bf28e07191173c2, type: 2}
 --- !u!114 &767175153
 MonoBehaviour:
   m_ObjectHideFlags: 0

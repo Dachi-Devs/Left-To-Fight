@@ -14,5 +14,10 @@ public class PlayerController : MonoBehaviour
         {
             GetComponentInChildren<PlayerInteraction>().CallInteraction();
         }
+
+        if (Input.GetKey(KeyCode.Mouse0))
+            GetComponent<Attacking>().SetAttacking(true);
+        else
+            GetComponent<Attacking>().SetAttacking(false);
     }
 }
