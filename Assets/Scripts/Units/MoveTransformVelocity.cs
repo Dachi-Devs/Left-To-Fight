@@ -2,8 +2,7 @@
 
 public class MoveTransformVelocity : MonoBehaviour, IMoveVelocity
 {
-    [SerializeField]
-    private float moveSpeed;
+    private float moveSpeed = 10f;
 
     private Vector3 velocityVector;
     private Rigidbody2D rb2d;
@@ -28,5 +27,10 @@ public class MoveTransformVelocity : MonoBehaviour, IMoveVelocity
     {
         transform.position += velocityVector * moveSpeed * Time.deltaTime;
         //PlayAnimWhenMade
+    }
+
+    public void SetMoveSpeed(float speed)
+    {
+        moveSpeed = speed;
     }
 }

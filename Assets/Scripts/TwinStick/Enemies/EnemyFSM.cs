@@ -4,6 +4,8 @@ public class EnemyFSM : MonoBehaviour, IController
 {
     private IMovePos movement;
 
+    private EnemySO enemySO;
+
     private Vector3 startPos;
     [SerializeField]
     private Vector3 roamPos;
@@ -13,14 +15,6 @@ public class EnemyFSM : MonoBehaviour, IController
     [SerializeField]
     private float idleTimer;
     private bool idle;
-
-    [SerializeField]
-    private float attackRange;
-
-    [SerializeField]
-    private float targetRange;
-
-    private Transform playerOffset;
 
     [SerializeField]
     private Transform currentTarget;
@@ -45,9 +39,16 @@ public class EnemyFSM : MonoBehaviour, IController
         idleTimer = idleMax;
         startPos = transform.position;
         roamPos = GetRoamingArea();
-        movement.SetMovePosition(roamPos);
 
+        movement.SetMovePosition(roamPos);
         currentTarget = FindNearestTarget();
+    }
+
+    public void SetEnemyType(EnemySO so)
+    {
+        enemySO = so;
+        GetComponentInChildren<SetSpriteColour>().SetColour(enemySO.tint);
+        GetComponent<IMoveVelocity>().SetMoveSpeed(enemySO.moveSpeed);
     }
 
     void Update()
@@ -85,7 +86,7 @@ public class EnemyFSM : MonoBehaviour, IController
 
                         movement.SetMovePosition(finalTargetPosition);
 
-                        if (Vector3.Distance(transform.position, currentTarget.position) < attackRange)
+                        if (Vector3.Distance(transform.position, currentTarget.position) < enemySO.attackRange)
                         {
                             GetComponent<RotateToDir>().SetTargetObject(currentTarget);
                             GetComponentInChildren<MeleeAttack>().StartAttack();
@@ -165,7 +166,7 @@ public class EnemyFSM : MonoBehaviour, IController
                 }
             }
 
-            if (Vector3.Distance(closestTarget.position, transform.position) < targetRange)
+            if (Vector3.Distance(closestTarget.position, transform.position) < enemySO.targetRange)
             {
                 state = State.chasing;
                 return closestTarget;
@@ -176,12 +177,6 @@ public class EnemyFSM : MonoBehaviour, IController
 
     private bool IsChaseBroken()
     {
-        return (Vector3.Distance(transform.position, currentTarget.position)) > (targetRange * 1.2f);
-    }
-
-    void OnDrawGizmosSelected()
-    {
-        Gizmos.color = Color.red;
-        //Gizmos.DrawWireSphere(transform.position, targetRange);
+        return (Vector3.Distance(transform.position, currentTarget.position)) > (enemySO.targetRange * 1.2f);
     }
 }

@@ -35,7 +35,6 @@ public class MeleeAttack : MonoBehaviour, IAttack
 
     public void SwingMelee()
     {
-        Debug.Log("MELEE ATTACK");
         Melee melee = Instantiate(meleeHitbox, meleePosition.position, Quaternion.identity).GetComponent<Melee>();
         melee.Setup(meleeSO);
     }

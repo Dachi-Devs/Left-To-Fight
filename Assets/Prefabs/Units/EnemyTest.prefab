@@ -319,7 +319,7 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 1
   m_Mass: 38.484512
-  m_LinearDrag: 0
+  m_LinearDrag: 1
   m_AngularDrag: 0.05
   m_GravityScale: 0
   m_Material: {fileID: 0}
@@ -354,11 +354,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 71e83ed7cf6439a4fa7a06d5d8b41fa6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemySO: {fileID: 11400000, guid: d32f04148dbd974448e7ad398bc4c90f, type: 2}
   roamPos: {x: 0, y: 0, z: 0}
   idleMax: 3
   idleTimer: 0
-  attackRange: 15
-  targetRange: 40
   currentTarget: {fileID: 0}
   state: 0
 --- !u!114 &4147599600033292218
@@ -388,7 +387,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 775f5d1b80d070146a24b74c82a26611, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 25
 --- !u!114 &7459145813992467658
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -641,6 +639,7 @@ GameObject:
   - component: {fileID: 7782587491267030175}
   - component: {fileID: 125135359246887481}
   - component: {fileID: 6745494643534835872}
+  - component: {fileID: 4786637652817505171}
   m_Layer: 0
   m_Name: Sprites
   m_TagString: Untagged
@@ -693,6 +692,22 @@ SortingGroup:
   m_SortingLayerID: 1716280971
   m_SortingLayer: 1
   m_SortingOrder: 0
+--- !u!114 &4786637652817505171
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5540894093311687680}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb2da64c66f152948b1804f557ba22b3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spriteRenderers:
+  - {fileID: 4147599599028160941}
+  - {fileID: 4645392507830088342}
+  - {fileID: 8501415709457847285}
 --- !u!1 &7238025473528872449
 GameObject:
   m_ObjectHideFlags: 0
