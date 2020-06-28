@@ -8,4 +8,6 @@ public class EnemySO : ScriptableObject
     public float moveSpeed;
 
     public Color tint;
+
+    public DropTableSO dropTable;
 }

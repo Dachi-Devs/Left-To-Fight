@@ -13,13 +13,12 @@ public class SpawnManager : MonoBehaviour
     public float hordeDelay;
     public EnemySO hordeEnemySO;
 
-    private bool hordeActive;
-
     // Start is called before the first frame update
     void Start()
     {
         sEnemyPrefab = enemyPrefab;
         SpawnEnemies();
+        FindObjectOfType<LevelManager>().OnHordeActive += LevelManager_OnHordeActive;
     }
 
     private void SpawnEnemies()
@@ -29,6 +28,11 @@ public class SpawnManager : MonoBehaviour
         {
             spawnPoint.GetComponent<SpawnerData>().SpawnEnemy();
         }
+    }
+
+    private void LevelManager_OnHordeActive(object sender, System.EventArgs e)
+    {
+        SetupHorde();
     }
 
     private void SetupHorde()
@@ -57,9 +61,7 @@ public class SpawnManager : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.T))
-        {
+        if (Input.GetKeyDown(KeyCode.H))
             SetupHorde();
-        }
     }
 }

@@ -1,15 +1,19 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class DropItems : MonoBehaviour
 {
-    public DropTableSO dropTable;
+    private DropTableSO dropTable;
 
     public void Drop()
     {
         ItemSlot itemFromTable = dropTable.GetItem();
-        DropItem(itemFromTable);
+        if (itemFromTable != null)
+            DropItem(itemFromTable);
+    }
+
+    public void SetDropTable(DropTableSO drop)
+    {
+        dropTable = drop;
     }
 
     private void DropItem(ItemSlot item)

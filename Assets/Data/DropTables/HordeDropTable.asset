@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 96b14b2958d958a4bb5487d566fafb5a, type: 3}
-  m_Name: TestDropTable
+  m_Name: HordeDropTable
   m_EditorClassIdentifier: 
   tableContents:
   - item: {fileID: 11400000, guid: d6e25ef046cc3784ebdb60889e307485, type: 2}
@@ -23,3 +23,4 @@ MonoBehaviour:
     quantity: 2
   - item: {fileID: 11400000, guid: 6716ac9c643b2d947a23d6a8b684064d, type: 2}
     quantity: 3
+  noDropChance: 0

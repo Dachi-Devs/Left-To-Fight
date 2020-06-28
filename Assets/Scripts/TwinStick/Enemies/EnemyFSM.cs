@@ -49,6 +49,7 @@ public class EnemyFSM : MonoBehaviour, IController
         enemySO = so;
         GetComponentInChildren<SetSpriteColour>().SetColour(enemySO.tint);
         GetComponent<IMoveVelocity>().SetMoveSpeed(enemySO.moveSpeed);
+        GetComponent<DropItems>().SetDropTable(enemySO.dropTable);
     }
 
     void Update()

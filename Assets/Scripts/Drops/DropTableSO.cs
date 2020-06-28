@@ -4,6 +4,7 @@
 public class DropTableSO : ScriptableObject
 {
     public ItemSlot[] tableContents;
+    public float noDropChance;
     private int totalItemLength;
 
     public ItemSlot GetItem()
@@ -12,7 +13,7 @@ public class DropTableSO : ScriptableObject
 
         int itemIndex = Random.Range(1, totalItemLength);
 
-        ItemSlot returnedItem = tableContents[0];
+        ItemSlot returnedItem = null;
         foreach(ItemSlot i in tableContents)
         {
             int slotTickets = DropManager.Instance.qualityValues[i.item.quality.ToString()];
